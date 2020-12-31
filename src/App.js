@@ -21,7 +21,16 @@ export default class App extends React.Component {
     });
   }
 
+  setDeleteTask = (index, event)=>{
+      this.setState((previousState )=>{
+        const deleted = previousState.newTask.filter(( item,itemindex)=>itemindex !== index)
+        return {
+          newTask : deleted,
+        }
 
+    })
+ 
+  }
   render(){
     return (
       <div className="App">
@@ -39,6 +48,7 @@ export default class App extends React.Component {
                     this.state.newTask.map((task, index)=>{
                       return <li key={index}>
                         {task}
+                        <button type="button" onClick={(e)=>this.setDeleteTask(index,e)}>Delete</button>
                         </li>
                     })
                   }
